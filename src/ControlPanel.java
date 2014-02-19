@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import WaxDevices.*;
+
 
 public class ControlPanel extends JFrame {
 
@@ -38,6 +40,7 @@ public class ControlPanel extends JFrame {
 	private AccSensor wax4;
 	private AccSensor wax5;
 	private AccSensor wax6;
+	private JTextField comField;
 	
 
 	/**
@@ -241,7 +244,7 @@ public class ControlPanel extends JFrame {
 		btnStartRecive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					initReciver( Integer.parseInt(portField.getText()));
+					initReciver( Integer.parseInt(portField.getText()),Integer.parseInt(comField.getText()));
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -251,7 +254,7 @@ public class ControlPanel extends JFrame {
 				}
 			}
 		});
-		btnStartRecive.setBounds(255, 310, 105, 23);
+		btnStartRecive.setBounds(392, 311, 105, 23);
 		contentPane.add(btnStartRecive);
 		
 		JLabel lblWax_3 = new JLabel("WAX4");
@@ -388,11 +391,21 @@ public class ControlPanel extends JFrame {
 		});
 		btnStop_5.setBounds(420, 210, 89, 23);
 		contentPane.add(btnStop_5);
+		
+		JLabel lblCom = new JLabel("COM");
+		lblCom.setBounds(235, 314, 46, 14);
+		contentPane.add(lblCom);
+		
+		comField = new JTextField();
+		comField.setText("3");
+		comField.setBounds(278, 311, 86, 20);
+		contentPane.add(comField);
+		comField.setColumns(10);
 	}
 	
 	
-	public void initReciver(int port) throws IOException{
-		 recive = new AccReceiver(port);
+	public void initReciver(int port, int com) throws IOException{
+		 recive = new AccReceiver(port,com);
 		 recive.startRecive();
 	}
 }
