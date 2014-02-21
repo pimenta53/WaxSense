@@ -30,7 +30,7 @@ public class AccReceiver {
 	public void startRecive() throws IOException{
 		receiver.startListening();
 		System.out.println("Starting accelerometers...");
-	    String command = "cmd.exe /c start waxrec.exe \\\\.\\"+com+" -osc localhost:"+receiverPort+" -init \"MODE=1\r\n\"";
+	    String command = "cmd.exe /c start waxrec.exe \\\\.\\COM"+com+" -osc localhost:"+receiverPort+" -init \"MODE=1\r\n\"";
 	    Process child = Runtime.getRuntime().exec(command);
 	    
 	    System.out.println("Server is listening on port " + receiverPort + " and com: "+com);
